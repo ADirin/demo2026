@@ -1,20 +1,26 @@
-Pipeline {
+pipeline {
     agent any
     stages {
-        stage("check") {
+        stage('checkout') {
             steps {
-                echo " check the github"
+                git 'https://github.com/ADirin/demo2026.git'
             }
         }
 
-        stage("Build"){
+        stage('Build'){
             steps {
-                echo "build maven"
+                bat 'mav clean install'
             }
         }
-        stage("Print"){
+        stage('Test'){
             steps{
-                echo "print everything"
+                bat 'mvn test'
+            }
+        }
+
+        stage('code coverage'){
+            steps{
+                jacoco()
             }
         }
     }
