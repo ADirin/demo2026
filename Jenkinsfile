@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build'){
             steps {
-                bat 'mav clean install'
+                bat 'mvn clean install'
             }
         }
         stage('Test'){
